@@ -11,9 +11,10 @@ RUN mkdir -p $PHP_INI_DIR/conf.d
 
 ## Extra
 ENV PACKAGE_LIST memcache tidy
+ENV APACHE_VERSION 2.2.24
 
 # Apache
-RUN apt-get update && apt-get install --force-yes -y apache2 apache2.2-common --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install --force-yes -y apache2=$APACHE_VERSION apache2.2-common --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 RUN rm -rf /var/www/html && mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www/html && chown -R www-data:www-data /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www/html
 
